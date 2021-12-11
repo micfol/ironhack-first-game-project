@@ -1,11 +1,12 @@
 class Obstacle {
-    constructor (x, y, width, height, color) {
+    constructor (x, y, width, height, color, type) {
         this.x = x;
         this.y = y;
-        this.dx = -4;
+        this.dx = -3;
         this.width = width;
         this.height = height;
         this.color = color;
+        this.type = type;
     }
 
     drawObstacle () {
@@ -17,29 +18,54 @@ class Obstacle {
         this.x += this.dx;
     }
 
-    detectCollision(obstacle) {
-        let playerLeft = rectangle.x;
-        let playerRight = rectangle.x + rectangle.width;
-        let playerUp = rectangle.y;
-        let playerDown = rectangle.y + rectangle.height;
+    // detectCollision(player, obstacle) {
+    //     let playerLeft = rectangle.x;
+    //     let playerRight = rectangle.x + rectangle.width;
+    //     let playerUp = rectangle.y;
+    //     let playerDown = rectangle.y + rectangle.height;
     
-        let obstLeft = obstacle.x;
-        let obstRight = obstacle.x + obstacle.width;
-        let obstUp = obstacle.y;
-        let obstDown = obstacle.y + obstacle.height;
+    //     let obstLeft = obstacle.x;
+    //     let obstRight = obstacle.x + obstacle.width;
+    //     let obstUp = obstacle.y;
+    //     let obstDown = obstacle.y + obstacle.height;
     
-        if (
-            playerDown < obstUp ||
-            playerUp > obstDown ||
-            playerLeft > obstRight ||
-            playerRight < obstLeft
-          ) {
-            return false;
-          } else {
-            return true;
-          }
-    }
+    //     if (
+    //         playerDown < obstUp ||
+    //         playerUp > obstDown ||
+    //         playerLeft > obstRight ||
+    //         playerRight < obstLeft
+    //       ) {
+    //         return false;
+    //       } else {
+    //         return true;
+    //       }
+    // }
 }
+
+
+// function pickPocket () {
+//     let newObstacle = new Obstacle(canvas.width, 305, 30, 65, "green");
+//     obstacles.push(newObstacle);
+// }
+
+// function schengenFlag () {
+//     let randomY = Math.floor(Math.random() * 185) + 20;
+//     let flagObstacle = new Obstacle(canvas.width, randomY, 50, 30, "blue");
+//     obstacles.push(flagObstacle);
+//     console.log(flagObstacle);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // class PickPocketObs extends Obstacle {
 //     constructor(x, y, width, height, color){
@@ -57,17 +83,7 @@ class Obstacle {
 // let score = 0;
 // let health = 100;
 
-function pickPocket () {
-    let newObstacle = new Obstacle(canvas.width, 305, 30, 65, "green");
-    obstacles.push(newObstacle);
-}
 
-function schengenFlag () {
-    let randomY = Math.floor(Math.random() * 185) + 20;
-    let flagObstacle = new Obstacle(canvas.width, randomY, 50, 30, "blue");
-    obstacles.push(flagObstacle);
-    console.log(flagObstacle);
-}
 
 
 

@@ -1,27 +1,6 @@
-// class Player {
-//     constructor (x, y, height, width, jumping, x_velocity, y_velocity) {
-//         this.x = x;
-//         this.y = y;
-//         this.height = height;
-//         this.width = width;
-//         this.jumping = true;
-//         this.x_velocity = x_velocity;
-//         this.y_velocity = y_velocity;
-//     }
 
-//     clearCanvas () {
-//         context.clearRect(0, 0, canvas.width, canvas.height);
-//     }
-
-//     drawPlayer () {
-//         context.fillStyle = "#ff0000";
-//         context.beginPath();
-//         context.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-//         context.stroke()
-//     }
-// };
-
-// let rectangle = new Player(75, 0, 32, 32, true, 0, 0)
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d");
 
 rectangle = {
     x: 75,
@@ -30,7 +9,7 @@ rectangle = {
     width: 32,
     jumping: true,
     x_velocity: 0,
-    y_velocity: 0
+    y_velocity: 0, 
 }
 
 controller = {
@@ -125,36 +104,3 @@ controller = {
 //     }
 //   }
 
-
-
-// class Player {
-//     constructor() {
-//         this.x = canvas.width - 550;
-//         this.y = canvas.height - 100;
-//         this.dx = 25;
-//         this.dy = 30;
-        
-//     }
-
-//     moveLeft(){
-//         if (this.x > 55){
-//             this.x -= this.dx;
-//         };
-//     }
-
-//     moveRight(){
-//         if (this.x < 400){
-//             this.x += this.dx;
-//         };
-//     };
-
-//     moveUp(){
-//         this.y += this.dy;
-//         };
-    
-
-//     drawPlayer () {
-//         ctx.fillStyle = this.color;
-//         ctx.fillRect(this.x, this.y, this.width, this.height);
-//       }
-// };
