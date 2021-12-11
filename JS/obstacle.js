@@ -16,13 +16,45 @@ class Obstacle {
     move () {
         this.x += this.dx;
     }
+
+    detectCollision(obstacle) {
+        let playerLeft = rectangle.x;
+        let playerRight = rectangle.x + rectangle.width;
+        let playerUp = rectangle.y;
+        let playerDown = rectangle.y + rectangle.height;
+    
+        let obstLeft = obstacle.x;
+        let obstRight = obstacle.x + obstacle.width;
+        let obstUp = obstacle.y;
+        let obstDown = obstacle.y + obstacle.height;
+    
+        if (
+            playerDown < obstUp ||
+            playerUp > obstDown ||
+            playerLeft > obstRight ||
+            playerRight < obstLeft
+          ) {
+            return false;
+          } else {
+            return true;
+          }
+    }
 }
 
-let obstacles = [];
-let obstaclesFrequency = 0;
-let gameOver = false;
-let animationId = null;
-let score = 0;
+// class PickPocketObs extends Obstacle {
+//     constructor(x, y, width, height, color){
+//     let newObstacle = new Obstacle(canvas.width, 305, 30, 65, "green");
+//     obstacles.push(newObstacle);
+//     };
+// }
+
+// new pickPocket() = PickPocketObs
+
+// let obstacles = [];
+// let obstaclesFrequency = 0;
+// let gameOver = false;
+// let animationId = null;
+// let score = 0;
 // let health = 100;
 
 function pickPocket () {
@@ -37,66 +69,43 @@ function schengenFlag () {
     console.log(flagObstacle);
 }
 
-function detectCollision(obstacle) {
-    let playerLeft = rectangle.x;
-    let playerRight = rectangle.x + rectangle.width;
-    let playerUp = rectangle.y;
-    let playerDown = rectangle.y + rectangle.height;
-
-    let obstLeft = obstacle.x;
-    let obstRight = obstacle.x + obstacle.width;
-    let obstUp = obstacle.y;
-    let obstDown = obstacle.y + obstacle.height;
-
-    if (
-        playerDown < obstUp ||
-        playerUp > obstDown ||
-        playerLeft > obstRight ||
-        playerRight < obstLeft
-      ) {
-        return false;
-      } else {
-        return true;
-      }
-}
-
-function randomNum () {
-    return Math.floor(Math.random() * 164) +40;
-}
-
-function updateEverything() {
-    // rectangle.clearCanvas();
-    // rectangle.drawPlayer();
-    obstaclesFrequency++;
-    if (obstaclesFrequency % randomNum() === 1) {
-        pickPocket();
-    } else if (obstaclesFrequency % 100 === 1) { schengenFlag();
-    }
-
-    obstacles.forEach((obstacle) => {
-        obstacle.move();
-        obstacle.drawObstacle();
-        gameOver = detectCollision(obstacle);
-    });
-
-    if (!gameOver) {
-        animationId = requestAnimationFrame(updateEverything);
-    } else {
-        cancelAnimationFrame(animationId);
-        // rectangle.clearCanvas();
-        context.fillStyle = "white";
-        context.font = "40px Verdana";
-        context.fillText("Womp Womp! Your Passport was Stolen!", 350, 225);
-        }
-
-    if (rectangle.x < 0) {
-        cancelAnimationFrame(animationId);
-        }
-    }
-
-    updateEverything();
-
-// class Flags () {}
 
 
-// class PickPocket () {}
+
+
+// function updateEverything() {
+//     // rectangle.clearCanvas();
+//     // rectangle.drawPlayer();
+//     obstaclesFrequency++;
+//     if (obstaclesFrequency % randomNum() === 1) {
+//         pickPocket();
+//     } else if (obstaclesFrequency % 100 === 1) { schengenFlag();
+//     }
+
+//     obstacles.forEach((obstacle) => {
+//         obstacle.move();
+//         obstacle.drawObstacle();
+//         gameOver = detectCollision(obstacle);
+//     });
+
+//     if (!gameOver) {
+//         animationId = requestAnimationFrame(updateEverything);
+//     } else {
+//         cancelAnimationFrame(animationId);
+//         // create a custom Game Over screen to fill up the canvas.
+
+
+//         // rectangle.clearCanvas();
+//         context.fillStyle = "white";
+//         context.font = "40px Verdana";
+//         context.fillText("Womp Womp! Your Passport was Stolen!", 350, 225);
+//         }
+
+//     if (rectangle.x < 0) {
+//         cancelAnimationFrame(animationId);
+//         }
+//     }
+
+    // updateEverything();
+
+
