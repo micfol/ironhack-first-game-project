@@ -43,7 +43,7 @@ controller = {
       rectangle.x_velocity -= 0.7;
     }
   
-    if (controller.right && rectangle.x < 770) {
+    if (controller.right && rectangle.x < 530) {
       rectangle.x_velocity += 0.7;
     }
   
@@ -54,24 +54,23 @@ controller = {
     rectangle.y_velocity *= 0.9; // friction
   
     // if rectangle is falling below floor line
-    if (rectangle.y > 380 - 16 - 32) {
+    if (rectangle.y > 360 - 16 - 32) {
       rectangle.jumping = false;
-      rectangle.y = 380 - 16 - 32;
+      rectangle.y = 360 - 16 - 32;
       rectangle.y_velocity = 0;
     }
     
-    context.fillStyle = "#202020";
+    context.fillStyle = "#432356";
     context.fillRect(0, 0, canvas.width, canvas.height); 
-    // x, y, width, height
-    context.fillStyle = "#ff0000"; // hex for red
+    context.fillStyle = "#ff0000";
     context.beginPath();
     context.rect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     context.fill();
     context.strokeStyle = "#202830";
     context.lineWidth = 4;
     context.beginPath();
-    context.moveTo(0, 375);
-    context.lineTo(900, 375);
+    context.moveTo(0, 350);
+    context.lineTo(640, 350);
     context.stroke();
   
     // call update when the browser is ready to draw again
@@ -81,26 +80,3 @@ controller = {
   window.addEventListener("keydown", controller.keyListener);
   window.addEventListener("keyup", controller.keyListener);
   window.requestAnimationFrame(loop);
-
-
-
-
-
-//   function updateAll() {
-//     player.draw();
-//     requestAnimationFrame(updateAll);
-//   }
-
-//   function gameOver () {
-
-//   }
-
-//   function youWin () {
-      
-//   }
-  
-//   function loop() {
-//     if (player.jumping) {
-//     }
-//   }
-
