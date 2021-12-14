@@ -7,15 +7,48 @@
     <link rel="stylesheet" href="styles/styles.css" />
     <title>Capture the Flags!</title>
   </head>
-  <body>
-    <div class="container" style="display: flex">
-      <!-- <div class="game-intro" width="360" height= "360" style="width 25%">
-        <img src="./img/EU_Flag.png" alt="" class="logo-img"/>
-      </div> -->
-      
-      <div id="game-board" style="flex-grow: 1">
-          <canvas id="canvas" width="640" height="360"></canvas>
+  <body>  
+    <div id="container">
+
+      <!-- Splash Screen   -->
+
+      <div id="splash" style="display: flex;">
+        <h1>Capture the Flags!</h1>
+        <img id="eu_flag" src="./img/EU.gif" alt="EU gif"/>
+        <p>
+          Welcome Traveller! You have made it to the Schengen Zone!
+        </p>
+        <p>
+          Use the left, right, and up arrow keys to make your way through and collect the <strong>flags</strong>, while avoiding those pesky <strong>pickpockets</strong>!
+        </p>
+        <a class="button" id="buttonStart">Start!</a>
       </div>
+
+      <!-- Game Screen -->
+
+      <div id="game-screen" style="display: none;">
+        <canvas id="canvas" width="640" height="360"></canvas>
+      </div>
+
+      <!-- Win Screen -->
+
+      <div id="game-win" style="display: none;">
+        <h1>You Win!</h1>
+        <p>World Traveller Extraordinaire!</p>
+        <p>Congratulations on collecting 26 flags!</p>
+        <p>One for every Schengen Member State!</p>
+        <a class="button" id="restartButton1">Restart Game!</a>
+      </div>
+
+      <!-- Game Over Screen -->
+
+      <div id="game-over" style="display: none;">
+        <h1>WOMP WOMP! You Lost.</h1>
+        <p>Those pickpockets got the best of you and made off with your passport!</p>
+        <p>Please proceed to your nearest embassy so you can get back home!</p>
+        <a class="button" id="restartButton2">Restart Game!</a>
+      </div>
+
     </div>
     <script type="text/javascript" src="/JS/player.js"></script>
     <script type="text/javascript" src="/JS/background.js"></script>

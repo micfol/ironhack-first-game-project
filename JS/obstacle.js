@@ -9,20 +9,26 @@ class Obstacle {
         this.flags = ["austria", "belgium", "czechrepublic", "denmark", "estonia", "finland", "france", "germany", "greece", "hungary", "iceland", "italy", "latvia", "liechtenstein", "lithuania", "luxembourg", "malta", "netherlands", "norway", "poland", "portugal", "slovakia", "slovenia", "spain", "sweden", "switzerland"];
         this.img = new Image();
         this.img2 = new Image();
+        this.img.src = this.chooseImg();
         }
         
     randomFlag () {
         return this.flags[Math.floor(Math.random() * this.flags.length)]
     }
     
+    chooseImg () {
+        if (this.type === "flag") {
+            return `../img/${this.randomFlag()}.png`;
+        } else 
+        return `../img/Pickpocket_Sprite.png`;
+    }
+
     drawSchengenFlag () {
-        this.img.src = `../img/${this.randomFlag()}.png`;
         context.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     drawPickPocket () {
-        this.img2.src = `../img/Pickpocket_Sprite.png`;
-        context.drawImage(this.img2, this.x, this.y, this.width, this.height);
+        context.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     move () {

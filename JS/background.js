@@ -19,4 +19,3 @@ class BackgroundImage {
     }
 }
 
-let backgroundImage = new BackgroundImage();

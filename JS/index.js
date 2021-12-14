@@ -1,15 +1,30 @@
-var controller, rectangle, loop;
+// DOM manipulation
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext("2d");
+let splashScreen = document.getElementById('splash')
+let gameScreen = document.getElementById('game-screen')
+let winScreen = document.getElementById('game-win')
+let gameOverScreen = document.getElementById('game-over')
+let buttonStart = document.getElementById('buttonStart')
+let buttonRestart1 = document.getElementById('restartButton1')
+let buttonRestart2 = document.getElementById('restartButton2')
 
+// End DOM Section
 const width = canvas.width;
 const height = canvas.height
 
+//Game variables
+var controller, rectangle, loop;
 let obstacles = [];
 let obstaclesFrequency = 0;
-let gameOver = false;
-let gameWin = false;
 let animationId = null;
 let score = 0;
 let health = 100;
+
+
+let backgroundImage = new BackgroundImage();
+
+// Begin Functions
 
 function randomNum () {
     return Math.floor(Math.random() * 164) +40;
@@ -20,21 +35,21 @@ function pickPocket () {
     obstacles.push(newObstacle);
 }
 
-function schengenFlag () {
+function schengenFlag () { 
     let randomY = Math.floor(Math.random() * 185) + 20;
-    let flagObstacle = new Obstacle(canvas.width, randomY, 50, 30, "flag");
+    let flagObstacle = new Obstacle(canvas.width, randomY, 50, 40, "flag");
     obstacles.push(flagObstacle);
 }
 
 function drawScore () {
     context.font = "16px Arial";
-    context.fillStyle = "#0095DD";
+    context.fillStyle = "#FFFFFF";
     context.fillText(`Score: ${score}/26`, 8, 20);
   }
 
 function drawHealth () {
     context.font = "16px Arial";
-    context.fillStyle = "#0095DD";
+    context.fillStyle = "#FFFFFF";
     context.fillText("Health: "+health, 550, 20);
 }
 
@@ -68,16 +83,17 @@ function detectCollision (obstacle,index) {
 }
 
 function updateEverything () {
-    // rectangle.clearCanvas();
-    // rectangle.drawPlayer();
+    context.clearRect(0, 0, width, height);
+    backgroundImage.drawBackground();
+    backgroundImage.moveBackground();
+    loop();
     drawScore ();
     drawHealth ();
-    // backgroundImage.drawBackground();
-    // backgroundImage.moveBackground();
+    
     obstaclesFrequency++;
-    if (obstaclesFrequency % randomNum () === 1) {
-        pickPocket ();
-    } else if (obstaclesFrequency % 100 === 1) { schengenFlag ();
+    if (obstaclesFrequency % randomNum() === 1) {
+        pickPocket();
+    } else if (obstaclesFrequency % 100 === 1) { schengenFlag();
     }
 
     obstacles.forEach ((obstacle, index) => {
@@ -86,35 +102,76 @@ function updateEverything () {
         obstacle.drawPickPocket();
         detectCollision(obstacle, index);
         if(health <= 0){
-            gameOver = true
+            gameOver();
         }
-        if(score === 26){
-            gameWin = true;
+        if(score >= 26){
+            gameWin();
         }
     });
 
-    if (!gameWin) {
-        animationId = requestAnimationFrame(updateEverything);
-    } else {
-        cancelAnimationFrame (animationId);
-        // create a custom Game Over screen to fill up the canvas.
-        context.fillStyle = "white";
-        context.font = "40px Verdana";
-        context.fillText("Congrats Traveller!", 350, 225);
-        }
-
-    // if (!gameOver) {
-    //     animationId = requestAnimationFrame(updateEverything);
-    // } else {
-    //     cancelAnimationFrame (animationId);
-    //     context.fillStyle = "white";
-    //     context.font = "40px Verdana";
-    //     context.fillText("Game Over", 350, 225);
-    //     }
+    requestAnimationFrame(updateEverything);
 
     if (rectangle.x < 0) {
         cancelAnimationFrame(animationId);
         }
+ 
     }
 
-updateEverything();
+// Screen swapping code
+
+function gameOver() {
+    cancelAnimationFrame(animationId);
+
+    gameOverScreen.style.display="flex"
+    splashScreen.style.display="none"
+    gameScreen.style.display="none"
+    winScreen.style.display="none"
+}
+
+function gameWin() {
+    cancelAnimationFrame(animationId);
+
+    winScreen.style.display="flex"
+    gameOverScreen.style.display="none"
+    splashScreen.style.display="none"
+    gameScreen.style.display="none"
+}
+
+function startGame() {
+    gameScreen.style.display="flex"
+    gameOverScreen.style.display="none"
+    splashScreen.style.display="none"
+    winScreen.style.display="none"
+    updateEverything();
+}
+
+function restart() {
+    obstacles = [];
+    score = 0;
+    health = 100;
+    animationId = 0;
+    obstaclesFrequency = 0
+    startGame();
+}
+
+window.addEventListener('load', () => {    
+    splashScreen.style.display = "flex"
+    gameScreen.style.display = "none"
+    gameOverScreen.style.display="none"
+    winScreen.style.display ="none"
+
+    buttonStart.addEventListener('click', () => {
+        startGame();
+    })
+
+    buttonRestart1.addEventListener('click', () => {
+        restart();
+    })
+
+    buttonRestart2.addEventListener('click', () => {
+        restart();
+    })
+})
+
+window.addEventListener("keydown", controller.keyListener);
+window.addEventListener("keyup", controller.keyListener);

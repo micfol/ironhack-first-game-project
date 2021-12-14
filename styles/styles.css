@@ -1,13 +1,58 @@
-#canvas {
-    border: 1px solid blue;
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: blueviolet;
+    font-family: 'DotGothic16', sans-serif;
 }
 
-#game-intro {
+body {
+    margin:auto;
+    height: 100%;
     display: flex;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#game-board {
+#container {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    background-color: cornflowerblue;
+    align-content: center;
+    width: 740px;
+    height: 520px;
+    margin: 0px;
+    padding: 0px;
+    border: 14px black dashed;
+}
+
+#splash, #game-screen, #game-win, #game-over {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#eu_flag {
+    max-width: 20%;
+}
+
+.button {
+    text-align: center;
+    width: 50%;
+    max-width: 150px;
+    border: 4px black solid;
+    color:black;
+    font-family: 'DotGothic16';
+    background-color: rgb(212, 247, 89);
+    padding: 22px;
+    margin: 9px;
+}
+
+p {
+    margin: 20px;
 }
