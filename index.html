@@ -8,17 +8,18 @@
     <title>Capture the Flags!</title>
   </head>
   <body>
-
-    
-    <div id="game-info"></div>
-    <div id="game-board">
-        <canvas id="canvas" width="640" height="360"></canvas>
+    <div class="container" style="display: flex">
+      <!-- <div class="game-intro" width="360" height= "360" style="width 25%">
+        <img src="./img/EU_Flag.png" alt="" class="logo-img"/>
+      </div> -->
+      
+      <div id="game-board" style="flex-grow: 1">
+          <canvas id="canvas" width="640" height="360"></canvas>
+      </div>
     </div>
-    
     <script type="text/javascript" src="/JS/player.js"></script>
-    <!-- <script type="text/javascript" src="/JS/background.js"></script> -->
+    <script type="text/javascript" src="/JS/background.js"></script>
     <script type="text/javascript" src="/JS/obstacle.js"></script>
-    
     <script type="text/javascript" src="/JS/index.js"></script>
   </body>
 </html>
