@@ -144,6 +144,8 @@ function startGame() {
 }
 
 function restart() {
+    rectangle.x_velocity = 0;
+    rectangle.y_velocity = 0;
     startGame();
 }
 
