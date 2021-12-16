@@ -16,13 +16,6 @@ const height = canvas.height
 //Game variables
 var controller, rectangle, loop;
 let currentGame; 
-// let obstacles = [];
-// let obstaclesFrequency = 0;
-// let animationId = null;
-// let score = 0;
-// let health = 100;
-
-// let backgroundImage = new BackgroundImage();
 
 // Begin Functions
 
@@ -99,7 +92,6 @@ function updateEverything () {
 
     currentGame.obstacles.forEach ((obstacle, index) => {
         obstacle.move();
-        console.log("dx", obstacle.dx)
         obstacle.drawSchengenFlag();
         obstacle.drawPickPocket();
         detectCollision(obstacle, index);
@@ -111,81 +103,65 @@ function updateEverything () {
         }
     });
 
-    currentGame.animationId = requestAnimationFrame(updateEverything);
+    if(!currentGame.gameOver){
+        currentGame.animationId = requestAnimationFrame(updateEverything);
+    }
 
     if (rectangle.x < 0) {
         cancelAnimationFrame(currentGame.animationId);
         }
- 
     }
 
 // Screen swapping code
 
 function gameOver() {
+    currentGame.gameOver = true;
     cancelAnimationFrame(currentGame.animationId);
-
-    gameOverScreen.style.display="flex"
-    splashScreen.style.display="none"
-    gameScreen.style.display="none"
-    winScreen.style.display="none"
+    gameOverScreen.style.display="flex";
+    splashScreen.style.display="none";
+    gameScreen.style.display="none";
+    winScreen.style.display="none";
 }
 
 function gameWin() {
     cancelAnimationFrame(currentGame.animationId);
-
-    winScreen.style.display="flex"
-    gameOverScreen.style.display="none"
-    splashScreen.style.display="none"
-    gameScreen.style.display="none"
+    currentGame.gameOver = true;
+    winScreen.style.display="flex";
+    gameOverScreen.style.display="none";
+    splashScreen.style.display="none";
+    gameScreen.style.display="none";
 }
 
 function startGame() {
     currentGame = new Game();
-    // obstacles = [];
-    // score = 0;
-    // health = 100;
-    // animationId = 0;
-    // obstaclesFrequency = 0;
     rectangle.x_velocity = 0;
     rectangle.y_velocity = 0;
-
-    gameScreen.style.display="flex"
-    gameOverScreen.style.display="none"
-    splashScreen.style.display="none"
-    winScreen.style.display="none"
+    gameScreen.style.display="flex";
+    gameOverScreen.style.display="none";
+    splashScreen.style.display="none";
+    winScreen.style.display="none";
     updateEverything();
 }
 
 function restart() {
-    console.log("restart");
-
-    // obstacles = [];
-    // score = 0;
-    // health = 100;
-    // animationId = 0;
-    // obstaclesFrequency = 0;
-    rectangle.x_velocity = 0;
-    rectangle.y_velocity = 0;
     startGame();
 }
 
 window.addEventListener('load', () => {    
-    splashScreen.style.display = "flex"
-    gameScreen.style.display = "none"
-    gameOverScreen.style.display="none"
-    winScreen.style.display ="none"
+    splashScreen.style.display = "flex";
+    gameScreen.style.display = "none";
+    gameOverScreen.style.display="none";
+    winScreen.style.display ="none";
 
     buttonStart.addEventListener('click', () => {
         startGame();
     })
 
     buttonRestart1.addEventListener('click', () => {
-        // startGame();
         restart();
     })
 
     buttonRestart2.addEventListener('click', () => {
-        // startGame();
         restart();
     })
 })

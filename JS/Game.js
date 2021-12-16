@@ -6,5 +6,6 @@ class Game {
         this.score = 0;
         this.health = 100;
         this.backgroundImage = new BackgroundImage();
+        this.gameOver = false;
     }
 }
