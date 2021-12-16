@@ -9,13 +9,13 @@ rectangle = {
 }
 
 var playerImgRight = new Image();
-playerImgRight.src = "../img/rightSprite.png";
+playerImgRight.src = "./img/rightSprite.png";
 var playerImgLeft = new Image();
-playerImgLeft.src = "../img/leftSprite.png";
+playerImgLeft.src = "./img/leftSprite.png";
 var playerImgFront = new Image();
-playerImgFront.src = "../img/frontSprite.png";
+playerImgFront.src = "./img/frontSprite.png";
 var playerImgBack = new Image();
-playerImgBack.src = "../img/backSprite.png"
+playerImgBack.src = "./img/backSprite.png"
 
 controller = {
     left: false,

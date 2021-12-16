@@ -1,7 +1,7 @@
 class BackgroundImage {
     constructor(){
       this.img = new Image();
-      this.img.src = '/img/bg imgs/gamebackground.png';
+      this.img.src = './img/bg imgs/gamebackground.png';
       this.x = 0;
       this.speed = -1;
     }

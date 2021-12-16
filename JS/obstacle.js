@@ -18,9 +18,9 @@ class Obstacle {
     
     chooseImg () {
         if (this.type === "flag") {
-            return `../img/${this.randomFlag()}.png`;
+            return `./img/${this.randomFlag()}.png`;
         } else 
-        return `../img/Pickpocket_Sprite.png`;
+        return `./img/Pickpocket_Sprite.png`;
     }
 
     drawSchengenFlag () {
