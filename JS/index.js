@@ -15,14 +15,14 @@ const height = canvas.height
 
 //Game variables
 var controller, rectangle, loop;
-let obstacles = [];
-let obstaclesFrequency = 0;
-let animationId = null;
-let score = 0;
-let health = 100;
+let currentGame; 
+// let obstacles = [];
+// let obstaclesFrequency = 0;
+// let animationId = null;
+// let score = 0;
+// let health = 100;
 
-
-let backgroundImage = new BackgroundImage();
+// let backgroundImage = new BackgroundImage();
 
 // Begin Functions
 
@@ -32,25 +32,25 @@ function randomNum () {
 
 function pickPocket () {
     let newObstacle = new Obstacle(canvas.width, 285, 30, 65, "pickpocket");
-    obstacles.push(newObstacle);
+    currentGame.obstacles.push(newObstacle);
 }
 
 function schengenFlag () { 
     let randomY = Math.floor(Math.random() * 185) + 20;
     let flagObstacle = new Obstacle(canvas.width, randomY, 50, 40, "flag");
-    obstacles.push(flagObstacle);
+    currentGame.obstacles.push(flagObstacle);
 }
 
 function drawScore () {
     context.font = "16px Arial";
     context.fillStyle = "#FFFFFF";
-    context.fillText(`Score: ${score}/26`, 8, 20);
+    context.fillText(`Score: ${currentGame.score}/26`, 8, 20);
   }
 
 function drawHealth () {
     context.font = "16px Arial";
     context.fillStyle = "#FFFFFF";
-    context.fillText("Health: "+health, 550, 20);
+    context.fillText("Health: "+currentGame.health, 550, 20);
 }
 
 function detectCollision (obstacle,index) {
@@ -72,47 +72,49 @@ function detectCollision (obstacle,index) {
       ) {
         } else {
             if (obstacle.type === "flag"){
-                score+= 1;
-                obstacles.splice(index,1)
+                currentGame.score+= 1;
+                currentGame.obstacles.splice(index,1)
             }
             if (obstacle.type === "pickpocket"){
-                health -= 10;
-                obstacles.splice(index,1)
+                currentGame.health -= 10;
+                currentGame.obstacles.splice(index,1)
             }
       }
 }
 
 function updateEverything () {
     context.clearRect(0, 0, width, height);
-    backgroundImage.drawBackground();
-    backgroundImage.moveBackground();
+    currentGame.backgroundImage.drawBackground();
+    currentGame.backgroundImage.moveBackground();
     loop();
     drawScore ();
     drawHealth ();
     
-    obstaclesFrequency++;
-    if (obstaclesFrequency % randomNum() === 1) {
+    currentGame.obstaclesFrequency++;
+    if (currentGame.obstaclesFrequency % randomNum() === 1) {
         pickPocket();
-    } else if (obstaclesFrequency % 100 === 1) { schengenFlag();
+    } else if (currentGame.obstaclesFrequency % 100 === 1) { 
+        schengenFlag();
     }
 
-    obstacles.forEach ((obstacle, index) => {
+    currentGame.obstacles.forEach ((obstacle, index) => {
         obstacle.move();
+        console.log("dx", obstacle.dx)
         obstacle.drawSchengenFlag();
         obstacle.drawPickPocket();
         detectCollision(obstacle, index);
-        if(health <= 0){
+        if(currentGame.health <= 0){
             gameOver();
         }
-        if(score >= 26){
+        if(currentGame.score >= 26){
             gameWin();
         }
     });
 
-    requestAnimationFrame(updateEverything);
+    currentGame.animationId = requestAnimationFrame(updateEverything);
 
     if (rectangle.x < 0) {
-        cancelAnimationFrame(animationId);
+        cancelAnimationFrame(currentGame.animationId);
         }
  
     }
@@ -120,7 +122,7 @@ function updateEverything () {
 // Screen swapping code
 
 function gameOver() {
-    cancelAnimationFrame(animationId);
+    cancelAnimationFrame(currentGame.animationId);
 
     gameOverScreen.style.display="flex"
     splashScreen.style.display="none"
@@ -129,7 +131,7 @@ function gameOver() {
 }
 
 function gameWin() {
-    cancelAnimationFrame(animationId);
+    cancelAnimationFrame(currentGame.animationId);
 
     winScreen.style.display="flex"
     gameOverScreen.style.display="none"
@@ -138,6 +140,15 @@ function gameWin() {
 }
 
 function startGame() {
+    currentGame = new Game();
+    // obstacles = [];
+    // score = 0;
+    // health = 100;
+    // animationId = 0;
+    // obstaclesFrequency = 0;
+    rectangle.x_velocity = 0;
+    rectangle.y_velocity = 0;
+
     gameScreen.style.display="flex"
     gameOverScreen.style.display="none"
     splashScreen.style.display="none"
@@ -146,11 +157,13 @@ function startGame() {
 }
 
 function restart() {
-    obstacles = [];
-    score = 0;
-    health = 100;
-    animationId = 0;
-    obstaclesFrequency = 0;
+    console.log("restart");
+
+    // obstacles = [];
+    // score = 0;
+    // health = 100;
+    // animationId = 0;
+    // obstaclesFrequency = 0;
     rectangle.x_velocity = 0;
     rectangle.y_velocity = 0;
     startGame();
@@ -167,10 +180,12 @@ window.addEventListener('load', () => {
     })
 
     buttonRestart1.addEventListener('click', () => {
+        // startGame();
         restart();
     })
 
     buttonRestart2.addEventListener('click', () => {
+        // startGame();
         restart();
     })
 })
