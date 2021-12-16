@@ -150,7 +150,9 @@ function restart() {
     score = 0;
     health = 100;
     animationId = 0;
-    obstaclesFrequency = 0
+    obstaclesFrequency = 0;
+    rectangle.x_velocity = 0;
+    rectangle.y_velocity = 0;
     startGame();
 }
 
