@@ -4,9 +4,13 @@
 
 ## Introduction
 
-The Introduction should give the outside a coder a look into what your software is, why it exists, and maybe some general philosophy behind the project.
+Welcome to my first game! This was an exciting first project to implement the skills I have learned so far in coding from my time at Ironhack. 
 
-## Documentation
+![Capture the Flags! Screenshot](https://i.imgur.com/MxJs67Zm.png)
+
+[Click to play: Capture the Flags!](http://micfol.github.io/ironhack-first-game-project/)
+
+## Technologies
 
 Documenting your code is extremely important. You may not have to worry about this now, but as your projects get more complex, people are going to need to know how to actually use your application.
 
@@ -14,7 +18,7 @@ This should include things like methods your program makes available, and most i
 
 This documentation can either be built into the README or linked in an external resource.
 
-## Setup
+## Challenges & Lessons Learned
 
 Some projects are difficult to get up and running, or require multiple steps/dependencies. The setup or getting started section is vital in these kinds of projects.
 
