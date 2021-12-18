@@ -65,11 +65,11 @@ function detectCollision (obstacle,index) {
       ) {
         } else {
             if (obstacle.type === "flag"){
-                currentGame.score+= 1;
+                currentGame.score+= 6;
                 currentGame.obstacles.splice(index,1)
             }
             if (obstacle.type === "pickpocket"){
-                currentGame.health -= 10;
+                currentGame.health -= 20;
                 currentGame.obstacles.splice(index,1)
             }
       }
